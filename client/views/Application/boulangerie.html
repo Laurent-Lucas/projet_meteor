@@ -1,0 +1,461 @@
+<template name="boulangerie">
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+
+
+
+        <script type="text/javascript">
+            
+            function Commander(){
+                
+            
+
+                alert("La commande est finalisé !");
+                location.reload(); 
+          
+            }
+            function MaFonction(form_element){
+                var form_element_id = form_element.id;
+                //alert("L’élément portant l'ID `" + form_element_id + "` à été cliqué !");
+
+                if(form_element_id === 'baguette'){
+                    document.getElementById("id").value = "baguette";
+                    document.getElementById("prix").value = 0.90;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+
+                else if(form_element_id === 'sandwich'){
+
+                    document.getElementById("id").value = "Sandwich";
+                    document.getElementById("prix").value = 3.50;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+                else if(form_element_id === 'buche'){
+
+                    document.getElementById("id").value = "buche";
+                    document.getElementById("prix").value = 2.20;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+                else if(form_element_id === 'salade'){
+
+                    document.getElementById("id").value = "Salade";
+                    document.getElementById("prix").value = 4.0;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+                else if(form_element_id === 'quiche'){
+
+                    document.getElementById("id").value = "Quiche";
+                    document.getElementById("prix").value = 2.80;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+                else if(form_element_id === 'pizza'){
+
+                    document.getElementById("id").value = "Pizza";
+                    document.getElementById("prix").value = 3.0;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+                else if(form_element_id === 'croissant'){
+
+                    document.getElementById("id").value = "Croissant";
+                    document.getElementById("prix").value = 0.80;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+                else if(form_element_id === 'painchocolat'){
+
+                    document.getElementById("id").value = "Pain au chocolat";
+                    document.getElementById("prix").value = 0.90;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+                else if(form_element_id === 'burger'){
+
+                    document.getElementById("id").value = "Burger";
+                    document.getElementById("prix").value = 3.80;
+                    var qt = prompt("Entrez la quantitée voulu :", "");
+                    document.getElementById("qte").value = qt;
+                    if(qt>0){
+                        ajouter();
+                        alert("Produit ajouté au panier !");
+                    }
+                    else {
+
+                        alert("Entrez un nombre valide");
+                    }
+                }
+
+
+            }
+            function ajouter()
+            {
+                console.log(prix);
+                var code = document.getElementById("id").value;
+                var qte = parseInt(document.getElementById("qte").value);
+                var prix = document.getElementById("prix").value;
+                var monPanier = new Panier();
+                monPanier.ajouterArticle(code, qte, prix);
+                console.log(prix);
+                var tableau = document.getElementById("tableau");
+                var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+                if (longueurTab > 0)
+                {
+                    for(var i = longueurTab ; i > 0  ; i--)
+                    {
+                        monPanier.ajouterArticle((tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                        tableau.deleteRow(i);
+                    }
+                }
+                var longueur = monPanier.liste.length;
+                for(var i =  0 ; i < longueur ; i++)
+                {
+                    var ligne = monPanier.liste[i];
+                    var ligneTableau = tableau.insertRow(-1);
+                    var colonne1 = ligneTableau.insertCell(0);
+                    colonne1.innerHTML += ligne.getCode();
+                    var colonne2 = ligneTableau.insertCell(1);
+                    colonne2.innerHTML += ligne.qteArticle;
+                    var colonne3 = ligneTableau.insertCell(2);
+                    colonne3.innerHTML += ligne.prixArticle;
+                    var colonne4 = ligneTableau.insertCell(3);
+                    colonne4.innerHTML += ligne.getPrixLigne();
+                    var colonne5 = ligneTableau.insertCell(4);
+                    colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+                }
+                document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+                document.getElementById("nbreLignes").innerHTML = longueur;
+            }
+            
+            function supprimer(code)
+            {
+                var monPanier = new Panier();
+                var tableau = document.getElementById("tableau");
+                var longueurTab = parseInt(document.getElementById("nbreLignes").innerHTML);
+                if (longueurTab > 0)
+                {
+                    for(var i = longueurTab ; i > 0  ; i--)
+                    {
+                        monPanier.ajouterArticle((tableau.rows[i].cells[0].innerHTML), parseInt(tableau.rows[i].cells[1].innerHTML), parseInt(tableau.rows[i].cells[2].innerHTML));
+                        tableau.deleteRow(i);
+                    }
+                }
+                monPanier.supprimerArticle(code);
+                var longueur = monPanier.liste.length;
+                for(var i = 0 ; i < longueur ; i++)
+                {
+                    var ligne = monPanier.liste[i];
+                    var ligneTableau = tableau.insertRow(-1);
+                    var colonne1 = ligneTableau.insertCell(0);
+                    colonne1.innerHTML += ligne.getCode();
+                    var colonne2 = ligneTableau.insertCell(1);
+                    colonne2.innerHTML += ligne.qteArticle;
+                    var colonne3 = ligneTableau.insertCell(2);
+                    colonne3.innerHTML += ligne.prixArticle;
+                    var colonne4 = ligneTableau.insertCell(3);
+                    colonne4.innerHTML += ligne.getPrixLigne();
+                    var colonne5 = ligneTableau.insertCell(4);
+                    colonne5.innerHTML += "<button class=\"btn btn-primary\" type=\"submit\" onclick=\"supprimer(this.parentNode.parentNode.cells[0].innerHTML)\"><span class=\"glyphicon glyphicon-remove\"></span> Retirer</button>";
+                }
+                document.getElementById("prixTotal").innerHTML = monPanier.getPrixPanier();
+                document.getElementById("nbreLignes").innerHTML = longueur;
+            }
+            function LignePanier(code, qte, prix) {
+                this.codeArticle = code;
+                this.qteArticle = qte;
+                this.prixArticle = prix;
+                this.ajouterQte = function (qte) {
+                    this.qteArticle += qte;
+                }
+                this.getPrixLigne = function () {
+                    var resultat = this.prixArticle * this.qteArticle;
+                    return resultat;
+                }
+                this.getCode = function () {
+                    return this.codeArticle;
+                }
+            }
+
+
+            function Panier() {
+                this.liste = [];
+                this.ajouterArticle = function (code, qte, prix) {
+                    var index = this.getArticle(code);
+                    if (index == -1) this.liste.push(new LignePanier(code, qte, prix));
+                    else this.liste[index].ajouterQte(qte);
+                }
+                this.getPrixPanier = function () {
+                    var total = 0;
+                    for (var i = 0; i < this.liste.length; i++)
+                        total += this.liste[i].getPrixLigne();
+                    return total;
+                }
+                this.getArticle = function (code) {
+                    for (var i = 0; i < this.liste.length; i++)
+                        if (code == this.liste[i].getCode()) return i;
+                    return -1;
+                }
+                this.supprimerArticle = function (code) {
+                    var index = this.getArticle(code);
+                    if (index > -1) this.liste.splice(index, 1);
+                }
+            }
+        </script>
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse bg-inverse">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{pathFor route='mainLayout'}}">Accueil</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{{pathFor route='mainLayout'}}">Menu</a></li>
+
+
+                <li class="active"><a href="{{pathFor route='register'}}">register</a></li>
+                <li class="active"><a class="logout">logout</a></li>
+
+                {{#if isAdmin}}
+                    <li class="active"><a class="logout">creation article</a></li>
+                {{/if}}
+                {{#if currentUser}}
+
+                    <li class="active"><a href="{{pathFor route='login'}}">Bonjour {{currentUser.username}}</a></li>
+                    <li class="active"><a href="{{pathFor route='carte'}}">carte</a> </li>
+                {{else}}
+
+                    <li class="active"><a href="{{pathFor route='login'}}">login</a></li>
+                {{/if}}
+
+            </ul>
+        </div>
+    </nav>
+
+
+            <!--
+            {{#each articles}}
+
+
+    <div class="col-md-4">
+      <div class="thumbnail">
+       
+          <img class="img-responsive" id="{{titre}}" src="{{cheminImage}}" alt="Nature" style="width:30%" onClick="MaFonction(this)">
+          <div class="caption">
+            <p>{{titre}}</p>
+          </div>
+        
+      </div>
+    </div>
+
+        {{/each}}
+        -->
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="baguette" src="../../images_1.jpg" alt="Lights" style="width:80%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p>La Baguette de pain</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="sandwich" src="../../sandwich.jpg" alt="Nature" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p>Sandwich jambon cru</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="buche" src="../../buche.jpg" alt="Fjords" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p> Bûche chocolat</p>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="salade" src="../../salade.jpg" alt="Fjords" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p> Salade Balsamique</p>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="quiche" src="../../quiche.jpg" alt="Fjords" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p> Quiche Jambon</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="pizza" src="../../pizaa.jpg" alt="Fjords" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p> Pizza Saumon</p>
+                        </div>
+
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="croissant" src="../../croissant.jpg" alt="Fjords" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p> Croissant</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="painchocolat" src="../../painchocolat.jpg" alt="Fjords" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p> Pain au chocolat</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="thumbnail">
+
+                        <img class="img-responsive" id="burger" src="../../burger.jpg" alt="Fjords" style="width:100%" onClick="MaFonction(this)">
+                        <div class="caption">
+                            <p> Burger </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+       
+        <section  class="container">
+            <article class="well form-inline pull-left col-lg-5">
+                
+                <legend>Gestion du panier</legend>
+                <label class="col-lg-3">Identifiant</label> : <input type = "text" disabled="disabled" id = "id" style="width:120px" class="input-sm form-control"><br><br>
+                <label class="col-lg-3">Prix</label> : <input type = "number" disabled="disabled" id = "prix" style="width:120px" class="input-sm form-control"><br><br>
+                <label class="col-lg-3" >Quantité</label> : <input type = "number" disabled="disabled" id = "qte" style="width:120px" class="input-sm form-control"><br><br>
+                <button class="btn btn-primary" type="submit" onclick="ajouter()"><span class="glyphicon glyphicon-shopping-cart"></span> Ajouter au panier</button>
+
+            </article>
+        </section>
+        <section class="container">
+            <article class="well form-inline pull-left col-lg-5">
+                <legend>Contenu du panier</legend>
+                <table id="tableau" class="table">
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Qte</th>
+                            <th>Prix unitaire</th>
+                            <th>Prix de la ligne</th>
+                            <th>Supprimer</th>
+                        </tr>
+                    </thead>
+                </table>
+                <br><label>Prix du panier total</label> : <label id = "prixTotal"></label>
+                <button class="btn btn-primary" type="submit" onclick="Commander()"><span class="glyphicon glyphicon-shopping-cart"></span> Commander</button>
+
+                <label id = "nbreLignes" hidden>0</label>
+            </article>
+        </section>
+
+    </body>
+</html>
+
+</template>

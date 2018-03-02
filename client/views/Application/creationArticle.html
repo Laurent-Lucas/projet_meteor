@@ -1,0 +1,33 @@
+<template name="creationArticle">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="form-group">
+    <form>
+        <label>titre</label><input type="text" name="titre" /><br />
+        <label>prix</label><input type="text" name="prix" /><br />
+        <label>chemin image</label><input type="text" name="cheminImage" /><br />
+        <label>choix restauration</label>
+        <select name="Restauration">
+            <option value="boulangerie">boulangerie</option>
+            <option value="Restaurant">Restaurant</option>
+            <option value="fastFood">fast-food</option>
+        </select>
+
+        <button type="submit">Envoyer</button>
+    </form>
+    <h3>Liste des articles</h3>
+    <ul>
+        {{#each articles}}
+            <ul>
+            <li>voici l'article {{ titre }} qui coute {{ prix }}</li>
+            </ul>
+        {{/each}}
+    </ul>
+</div>
+</body>
+
+</template>
